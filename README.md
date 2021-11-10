@@ -8,6 +8,10 @@ Before running this script, configure the internet connection, keyboard and loca
 
 ```
 pacman -Sy git python3
+```
 
+Then clone this repository.
+
+```
 git clone https://github.com/lbecher/install-archlinux.git
 ```
