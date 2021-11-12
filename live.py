@@ -3,7 +3,7 @@ import sys
 import textwrap
 
 partitioning_string = '''
-o
+g
 n
 p
 1
