@@ -86,6 +86,8 @@ def set_lvm():
 
 
 def create_luks():
+    global boot_partition
+    global lvm_partition
     os.system('clear')
     boot_partition = winput('Type your boot partition (sda1/nvme0n1p1/...): ')
     lvm_partition = winput('Type your lvm partition (sda2/nvme0n1p2/...): ')
@@ -96,6 +98,7 @@ def create_luks():
 
 
 def format_storage_device():
+    global storage_device
     os.system('clear')
     os.system('lsblk')
     storage_device = winput('Type your storage device (sda/nvme0n1/...): ')
