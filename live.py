@@ -66,6 +66,7 @@ def mount_volumes():
 
 def make_filesystems():
     os.system('clear')
+    os.system('mkfs.vfat -F32 /dev/' + boot_partition)
     os.system('mkfs.ext4 /dev/mapper/archlinux-root')
     os.system('mkfs.ext4 /dev/mapper/archlinux-extra')
     os.system('mkswap /dev/mapper/archlinux-swap')
