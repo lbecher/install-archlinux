@@ -87,11 +87,7 @@ def set_lvm():
 
 
 def create_luks():
-    global boot_partition
-    global lvm_partition
     os.system('clear')
-    boot_partition = winput('Type your boot partition (sda1/nvme0n1p1/...): ')
-    lvm_partition = winput('Type your lvm partition (sda2/nvme0n1p2/...): ')
     os.system('cryptsetup -c aes-xts-plain64 -s 512 -h sha512 luksFormat /dev/' + lvm_partition)
     os.system('cryptsetup luksOpen /dev/' + lvm_partition + ' ' + lvm_partition + '-crypt')
     ask_to_continue()
@@ -99,10 +95,7 @@ def create_luks():
 
 
 def format_storage_device():
-    global storage_device
     os.system('clear')
-    os.system('lsblk')
-    storage_device = winput('Type your storage device (sda/nvme0n1/...): ')
     os.system('sed -e \'s/\s*\([\+0-9a-zA-Z]*\).*/\\1/\' << EOF | fdisk /dev/' + storage_device + partitioning_string)
     ask_to_continue()
     create_luks()
@@ -110,8 +103,8 @@ def format_storage_device():
 
 def install_packages():
     os.system('clear')
-    os.system('pacman -Sy nano')
-    ask_to_continue()
+    #os.system('pacman -Sy nano')
+    #ask_to_continue()
     format_storage_device()
 
 
@@ -131,6 +124,15 @@ def menu():
 
 
 def init():
+    global storage_device
+    global boot_partition
+    global lvm_partition
+    os.system('clear')
+    os.system('lsblk')
+    storage_device = winput('Type your storage device (sda|nvme0n1|...): ')
+    boot_partition = winput('Type your boot partition (sda1|nvme0n1p1|...): ')
+    lvm_partition = winput('Type your lvm partition (sda2|nvme0n1p2|...): ')
+    ask_to_continue()
     while True:
         menu()
         choice = winput('Type your choice: ')
