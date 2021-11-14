@@ -42,7 +42,7 @@ def winput(string):
 def ask_to_continue():
     print('')
     choice = winput('Continue? (Type 1 for yes or any other key for no) ')
-    if choice != '1':
+    if (choice != '1'):
         sys.exit(-1)
     print('')
 
@@ -75,7 +75,8 @@ def get_logical_volumes_configuration():
     global lfs_partition_size
     os.system('clear')
     swap_partition_enable = winput('Do you want to have a dedicated logical volume to swap? (Type 1 for yes or any other key for no) ')
-    if (swap_partition_enable == '1') swap_partition_size = winput('Set your swap logical volume size (4G/8G/...): ')
+    if (swap_partition_enable == '1'):
+        swap_partition_size = winput('Set your swap logical volume size (4G/8G/...): ')
     home_partition_enable = winput('Do you want to have a dedicated logical volume to home? (Type 1 for yes or any other key for no) ')
     if (home_partition_enable == '1'):
         home_partition_size = winput('Set your home logical volume size (64G/128G/...): ')
@@ -101,13 +102,16 @@ def run_pacstrap():
 
 
 def mount_volumes():
-    if (storage_device == '') get_storage_device()
-    if (swap_partition_enable == '') get_logical_volumes_configuration()
+    if (storage_device == ''):
+        get_storage_device()
+    if (swap_partition_enable == ''):
+        get_logical_volumes_configuration()
     os.system('clear')
     os.system('mount /dev/mapper/archlinux-root /mnt -v')
     os.system('mkdir /mnt/boot -v')
     os.system('mount /dev/' + boot_partition + ' /mnt/boot -v')
-    if (swap_partition_enable == '1') os.system('swapon /dev/mapper/archlinux-swap -v')
+    if (swap_partition_enable == '1'):
+        os.system('swapon /dev/mapper/archlinux-swap -v')
     if (home_partition_enable == '1'):
         os.system('mkdir /mnt/home -v')
         os.system('mount /dev/mapper/archlinux-home /mnt/home -v')
@@ -116,8 +120,10 @@ def mount_volumes():
 
 
 def set_lvm_and_filesystems():
-    if (storage_device == '') get_storage_device()
-    if (swap_partition_enable == '') get_logical_volumes_configuration()
+    if (storage_device == ''):
+        get_storage_device()
+    if (swap_partition_enable == ''):
+        get_logical_volumes_configuration()
     os.system('clear')
     os.system('pvcreate /dev/mapper/' + lvm_partition + '-crypt')
     os.system('vgcreate archlinux /dev/mapper/' + lvm_partition + '-crypt')
@@ -138,7 +144,8 @@ def set_lvm_and_filesystems():
 
 
 def create_luks():
-    if (lvm_partition == '') get_storage_device()
+    if (lvm_partition == ''):
+        get_storage_device()
     os.system('clear')
     os.system('cryptsetup -c aes-xts-plain64 -s 512 -h sha512 luksFormat /dev/' + lvm_partition)
     os.system('cryptsetup luksOpen /dev/' + lvm_partition + ' ' + lvm_partition + '-crypt')
@@ -147,7 +154,8 @@ def create_luks():
 
 
 def format_storage_device():
-    if (storage_device == '') get_storage_device()
+    if (storage_device == ''):
+        get_storage_device()
     os.system('clear')
     os.system('sed -e \'s/\s*\([\+0-9a-zA-Z]*\).*/\\1/\' << EOF | fdisk /dev/' + storage_device + fdisk_partition_disk_string)
     ask_to_continue()
