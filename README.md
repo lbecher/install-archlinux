@@ -1,16 +1,18 @@
 # install-archlinux
-Scripts to install Arch Linux with LVM and LUKS.
+Scripts to install Arch Linux with LVM and UEFI.
 
 ## live.py
-Script to be runned on live ISO.
+Script to be runned on live ISO. Follow the step by step:
 
-Before running this script, configure the internet connection, keyboard and locale as described in the [official installation guide](https://wiki.archlinux.org/title/Installation_guide). Also install git and python3.
+1. Configure the internet connection as described in the [official installation guide](https://wiki.archlinux.org/title/Installation_guide).
+
+2. Install git and python3.
 
 ```
 pacman -Sy git python3
 ```
 
-Then clone this repository.
+3. clone this repository.
 
 ```
 git clone https://github.com/lbecher/install-archlinux.git
