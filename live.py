@@ -142,7 +142,7 @@ def set_lvm_and_filesystems():
     os.system('mkfs.ext4 /dev/mapper/archlinux-root')
     os.system('mkfs.vfat -F32 /dev/' + boot_partition)
     ask_to_continue()
-    make_filesystems()
+    mount_volumes()
 
 
 def create_luks():
@@ -152,7 +152,7 @@ def create_luks():
     os.system('cryptsetup -c aes-xts-plain64 -s 512 -h sha512 luksFormat /dev/' + lvm_partition)
     os.system('cryptsetup luksOpen /dev/' + lvm_partition + ' ' + lvm_partition + '-crypt')
     ask_to_continue()
-    set_lvm()
+    set_lvm_and_filesystems()
 
 
 def format_storage_device():
