@@ -21,18 +21,18 @@ w
 EOF
 '''
 
-storage_device = ""
+storage_device = ''
 
-boot_partition = ""
-lvm_partition = ""
+boot_partition = ''
+lvm_partition = ''
 
-swap_partition_enable = ""
-home_partition_enable = ""
-lfs_partition_enable = ""
+swap_partition_enable = ''
+home_partition_enable = ''
+lfs_partition_enable = ''
 
-swap_partition_size = ""
-home_partition_size = ""
-lfs_partition_size = ""
+swap_partition_size = ''
+home_partition_size = ''
+lfs_partition_size = ''
 
 # General functions
 def winput(string):
