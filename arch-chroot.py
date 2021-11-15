@@ -25,7 +25,7 @@ def ask_to_continue():
 def set_user():
     os.system('clear')
     os.system('passwd')
-    username = winput('Type your username (kate | luiz | ...): ')
+    username = winput('Type your username (kate | lucas | ana | ...): ')
     os.system('useradd -mG wheel ' + username)
     os.system('passwd ' + username)
     ask_to_continue()
@@ -33,14 +33,14 @@ def set_user():
 
 def install_base_packages():
     os.system('clear')
-    os.system('pacman -Sy os-prober grub efibootmgr networkmanager wireless_tools wpa_supplicante dialog linux-headers xdg-utils xdg-user-dirs lvm2')
+    os.system('pacman -Sy os-prober grub efibootmgr networkmanager wireless_tools wpa_supplicant dialog linux-headers xdg-utils xdg-user-dirs lvm2')
     ask_to_continue()
     set_user()
 
 
 def set_host():
     os.system('clear')
-    hostname = winput('Type your hostname (arch | my-linux | ...): ')
+    hostname = winput('Type your hostname (arch | my-linux | home-desktop | ...): ')
     os.system('echo ' + hostname + ' >> /etc/hostname')
     os.system('echo "' + hosts_string + hostname + '.localdomain ' + hostname + '" >> /etc/hosts')
     ask_to_continue()
@@ -64,7 +64,7 @@ def set_locale():
 def set_timezone():
     os.system('clear')
     timezone = winput('Type your timezone (America/New_York | America/Sao_Paulo | Europe/Berlim | ...): ')
-    os.system('ln -sf /usr/share/zoneinfo/' + timezone)
+    os.system('ln -sf /usr/share/zoneinfo/' + timezone + ' /etc/localtime')
     os.system('hwclock --systohc')
     ask_to_continue()
     set_locale()
