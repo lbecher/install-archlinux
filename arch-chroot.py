@@ -43,7 +43,6 @@ def set_host():
     hostname = winput('Type your hostname (arch | my-linux | ...): ')
     os.system('echo ' + hostname + ' >> /etc/hostname')
     os.system('echo "' + hosts_string + hostname + '.localdomain ' + hostname + '" >> /etc/hosts')
-    os.system('KEYMAP=' + layout + ' >> /etc/vconsole.conf')
     ask_to_continue()
     install_base_packages()
 
@@ -51,10 +50,11 @@ def set_host():
 def set_locale():
     os.system('clear')
     locale = winput('Type your locale (en_US | pt_BR | ...): ')
-    os.system('mov /etc/locale.gen /etc/locale.gen.backup')
+    os.system('mv /etc/locale.gen /etc/locale.gen.backup')
     os.system('echo "' + locale + '.UTF-8 UTF-8" >> /etc/locale.gen')
     os.system('locale-gen')
     os.system('echo LANG=' + locale + '.UTF-8 >> /etc/locale.conf')
+    print('')
     layout = winput('Set up your keyboard layout (us | br-abnt2 | ...): ')
     os.system('echo KEYMAP=' + layout + ' >> /etc/vconsole.conf')
     ask_to_continue()
