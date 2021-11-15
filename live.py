@@ -17,9 +17,11 @@ y
 t
 1
 1
+y
 t
 2
 30
+y
 w
 EOF
 '''
@@ -64,7 +66,7 @@ def get_storage_device():
     global boot_partition
     global lvm_partition
     os.system('clear')
-    os.system('lsblk')
+    os.system('lsblk -d | grep disk')
     print('')
     storage_device = winput('Type your storage device (sda|nvme0n1|...): ')
     if (storage_device[0:4] == 'nvme'):
