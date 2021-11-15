@@ -12,10 +12,20 @@ Script to be runned in the live mode. Follow the step by step:
 pacman -Sy git python3
 ```
 
-3. clone this repository.
+3. Clone this repository.
 
 ```
 git clone https://github.com/lbecher/install-archlinux.git
+```
+
+4. Change to install-archlinux directory.
+```
+cd install-archlinux
+```
+
+5. Run the live script.
+```
+python3 live.py
 ```
 
 ## arch-chroot.py (not created yet)
