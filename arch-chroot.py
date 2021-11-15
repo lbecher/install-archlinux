@@ -2,10 +2,30 @@ import os
 import sys
 import textwrap
 
-hosts_string = '''
-127.0.0.1    localhost
+hosts_string = '''127.0.0.1    localhost
 ::1          localhost
 127.0.1.1    '''
+
+mkinitcpio_string = '''MODULES=()
+BINARIES=()
+FILES=()
+HOOKS=(base udev autodetect keyboard keymap modconf block encrypt lvm2 filesystems fsck)
+'''
+
+grub_string1 = '''GRUB_DEFAULT=0
+GRUB_TIMEOUT=5
+GRUB_DISTRIBUTOR="Arch"
+GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"
+GRUB_CMDLINE_LINUX="cryptdevice=UUID='''
+
+grub_string2 = ''' root=/dev/archlinux/root"
+GRUB_PRELOAD_MODULES="part_gpt part_msdos"
+GRUB_TIMEOUT_STYLE=menu
+GRUB_TERMINAL_INPUT=console
+GRUB_GFXMODE=auto
+GRUB_GFXPAYLOAD_LINUX=keep
+GRUB_DISABLE_RECOVERY=true
+'''
 
 # General functions
 def winput(string):
