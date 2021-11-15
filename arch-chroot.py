@@ -42,7 +42,7 @@ def set_host():
     os.system('clear')
     hostname = winput('Type your hostname (arch | my-linux | ...): ')
     os.system('echo ' + hostname + ' >> /etc/hostname')
-    os.system('echo "' + hosts_string + hostname '.localdomain ' + hostname + '" >> /etc/hosts')
+    os.system('echo "' + hosts_string + hostname + '.localdomain ' + hostname + '" >> /etc/hosts')
     os.system('KEYMAP=' + layout + ' >> /etc/vconsole.conf')
     ask_to_continue()
     install_base_packages()
